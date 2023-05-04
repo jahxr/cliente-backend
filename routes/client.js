@@ -96,7 +96,7 @@ app.get('/stores/:idCategory', async (req, res) => {
         res.status(400).send('Bad Request')
     }
     const stores = await storeschema
-                    .find({"category.id": req.params.idCategory})
+                    .find({"idCategoria": req.params.idCategory})
     res.send(stores)
 });
 
