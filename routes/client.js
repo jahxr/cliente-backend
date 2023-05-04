@@ -79,9 +79,9 @@ app.post('/login', async (req, res) => {
 
 //todas las categorias
 app.get('/categories', (req, res) => {
-    queries.Read(categorieschema, {})
-        .then(result => res.send(result))
-        .catch(err => res.status(500).send(err))
+    categorieschema.find({})
+    .then(result => res.send(result))
+    .catch(err => res.status(500).send(err))
 })
 
 app.get('/allStores', (req, res) => {

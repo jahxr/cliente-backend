@@ -7,4 +7,4 @@ const schema = new mongoose.Schema({
     icono: String
 })
 
-module.exports = mongoose.model('categoria', schema)
+module.exports = mongoose.model('categories', schema)
