@@ -10,7 +10,7 @@ class Database {
     }
 
     connect(){
-        mongoose.connect(`mongodb+srv://jahxr:<password>@unah.kdeo20q.mongodb.net/?retryWrites=true&w=majority`)
+        mongoose.connect(`mongodb+srv://jahxr:1478@unah.kdeo20q.mongodb.net/ongoing?retryWrites=true&w=majority`)
             .then(() => {console.log('connected to Database in mongoDB Atlas')})
             .catch(err => {console.log(err)})
     }
