@@ -84,6 +84,12 @@ app.get('/categories', (req, res) => {
         .catch(err => res.status(500).send(err))
 })
 
+app.get('/allStores', (req, res) => {
+    storeschema.find({})
+        .then(result => res.send(result))
+        .catch(err => res.status(500).send(err))
+})
+
 //todas las tiendas de una categoria
 app.get('/stores/:idCategory', async (req, res) => {
     try {req.params.idCategory} catch (error) {
