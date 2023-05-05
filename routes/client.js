@@ -133,6 +133,35 @@ app.get('/order/:idOrder', async (req, res) => {
     res.send(orders[0])
 });
 
+// Mandar todas las ordenes
+app.get('/order', async (req, res) => {
+    const orders = await ordersSchema.find();
+    res.send(orders)
+});
+
+// para cambiar el estatus de la orden
+// cuando un repartidor acepta la orden
+app.put('/order/:_id', function(req, res){
+
+    const {status} = req.body;
+
+    let u = {
+        id: req.body.id,
+        name: req.body.name,
+        email: req.body.email,
+        tel: req.body.tel
+    }
+    
+    ordersSchema.updateOne({_id: req.params._id}, {$set: {status: status, dealer: u}}).then(result=>{
+        res.send(result);
+        res.end()
+    }).catch(error=>{
+        res.send('error');
+        res.end()
+    })
+})
+
+
 app.post('/CreateOrder', async (req, res) => {
     try {
         if(!req.body.idClient){
