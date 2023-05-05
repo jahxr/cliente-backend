@@ -53,7 +53,7 @@ router.put('/pending/:_id', function(req, res){
 })
 
 //  para cambiar egregar la entrega al historial del repartidor
-router.put('/:_id/cambiar', function(req, res){
+router.put('/:_id/change', function(req, res){
     const idOrden = req.body._idOrden;
 
     const orden = req.body;
@@ -70,7 +70,7 @@ router.put('/:_id/cambiar', function(req, res){
 })
 
 // para eliminar del arreglo de pendientes
-router.put('/:_id/eliminar', function(req, res){
+router.put('/:_id/eliminate', function(req, res){
     const idOrden = req.body._idOrden;
 
     const orden = req.body;
