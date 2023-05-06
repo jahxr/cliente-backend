@@ -11,7 +11,7 @@ const schema = new mongoose.Schema({
     productos: [
         {
             name: String,
-            img: String,
+            imagen: String,
             precio: Number,
             descripcion: String
         }

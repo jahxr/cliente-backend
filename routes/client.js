@@ -111,6 +111,27 @@ app.get('/store/:idStore', (req, res) => {
         .catch(err => res.status(500).send(err))
 });
 
+// agregar producto a una tienda
+app.put("/store/:idTienda", async (req, res) => {
+    const tiendaId = req.params.idTienda;
+
+    let u = {
+        name: req.body.name,
+        imagen: req.body.imagen,
+        precio: req.body.precio,
+        descripcion: req.body.descripcion,
+    }
+    
+    storeschema.updateOne({_id: tiendaId}, {$push: {productos: u}}).then(result=>{
+        res.send(result);
+        res.end()
+    }).catch(error=>{
+        res.send(error);
+        res.end()
+    })
+
+});
+
 //todas las ordenes del usuario
 app.get('/orders/:id', async (req, res) => {
     try {
