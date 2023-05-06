@@ -6,7 +6,6 @@ var repartidores = require('../models/dealers');
 router.get('/', function(req, res){
     const email= req.query.email;
     const password= req.query.password;
-    
     repartidores.find({email:email, password:password, authenticated:true}).then(result =>{
         res.send(result);
         res.end();
@@ -15,6 +14,41 @@ router.get('/', function(req, res){
         res.end();
     })
 })
+
+//mandar a todos los repartidores
+router.get('/all', function(req, res){
+    repartidores.find().then(result =>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    })
+})
+
+
+// validar un nuevo repartidor
+router.put('/:id', function(req, res){
+    repartidores.updateOne({_id: req.params.id}, {authenticated: true}).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+});
+
+// eliminar un repartidor
+router.delete('/:id', function(req, res){
+    repartidores.deleteOne({_id: req.params.id}).then(result=>{
+        res.send(result);
+        res.end();
+    }).catch(error=>{
+        res.send(error);
+        res.end();
+    });
+})
+
 
 // agregar un repartidor
 router.post('/',function(req, res){

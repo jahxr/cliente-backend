@@ -84,6 +84,7 @@ app.get('/categories', (req, res) => {
     .catch(err => res.status(500).send(err))
 })
 
+// mandar todas las tiendas
 app.get('/allStores', (req, res) => {
     storeschema.find({})
         .then(result => res.send(result))
@@ -136,6 +137,12 @@ app.get('/order/:idOrder', async (req, res) => {
 // Mandar todas las ordenes
 app.get('/order', async (req, res) => {
     const orders = await ordersSchema.find();
+    res.send(orders)
+});
+
+// Mandar todas las ordenes que estan en camino
+app.get('/order/pending', async (req, res) => {
+    const orders = await ordersSchema.find({status: "Pending"});
     res.send(orders)
 });
 
